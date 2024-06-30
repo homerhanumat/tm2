@@ -1,0 +1,15 @@
+<footer class="{{ .Site.Params.background_color_class | default "bg-black" }} bottom-0 w-100 pa3" role="contentinfo">
+    <div class="flex justify-between">
+    <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="{{ .Site.Home.Permalink }}" >
+      &copy; {{ with .Site.Copyright | default .Site.Title }} {{ . | safeHTML }} {{ now.Format "2006"}} {{ end }}
+    </a>
+    {{/* next div added by me for random quotes */}}
+    <div className="pa4">
+        <blockquote className="athelas ml0 mt0 pl4 black-90 bl bw2 b--blue">
+            <p id="quotation" className="f5 f4-m f3-l lh-copy measure mt0"></p>
+            <cite id="quote-source" className="f6 ttu tracked fs-normal"></cite>
+        </blockquote>
+    </div>
+      <div>{{ partial "social-follow.html" . }}</div>
+    </div>
+  </footer>

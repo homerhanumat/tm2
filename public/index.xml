@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Welcome to Trident Moon on Trident Moon</title>
+    <link>http://localhost:1313/</link>
+    <description>Recent content in Welcome to Trident Moon on Trident Moon</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About Homer</title>
+      <link>http://localhost:1313/teacher/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/teacher/</guid>
+      <description>My First Teachers One&amp;rsquo;s parents are one&amp;rsquo;s first&amp;ndash;and hopefully best&amp;ndash; teachers. From my father I acquired a love of science and mathematics. My mother took up Yoga in 1971 when I was eight years old. (I remember thumbing through her copy of Richard Hittleman&amp;rsquo;s Yoga: A 28-Day Exercise Plan and trying out the postures, imitating what I imagined to be practice of sages in the mountains and forests of Eastern lands.</description>
+    </item>
+    <item>
+      <title>Classes and Schedule</title>
+      <link>http://localhost:1313/classes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/classes/</guid>
+      <description>Pavilion Classes Introduction to Aṣṭāṅga Yoga Anyone can join this class at any time. We go slow enough that newcomers can learn the Sun Salutations and experience a few of the fundamental standing postures.&#xA;Meeting Times:&#xA;Fridays, 10-11am. Aṣṭāṅga Yoga Primary Series Meeting Times:&#xA;Mondays and Wednesdays, 10-11:30am This class presumes familiarity with Sun Salutations and the fundamental standing postures, such as might be acquired by attending the introductory class 2-3 times.</description>
+    </item>
+  </channel>
+</rss>
