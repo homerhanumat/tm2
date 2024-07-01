@@ -24,7 +24,7 @@
   
 
     
-<script src="/js/custom.js"></script>
+
 
     
       
@@ -275,12 +275,13 @@ Mondays and Wednesdays, 10-11:30am This class presumes familiarity with Sun Salu
     </a>
     
     <div className="pa4">
-        <blockquote className="athelas ml0 mt0 pl4 black-90 bl bw2 b--blue">
-            <p id="quotation" className="f5 f4-m f3-l lh-copy measure mt0"></p>
-            <cite id="quote-source" className="f6 ttu tracked fs-normal"></cite>
-        </blockquote>
+      <blockquote class="athelas ml0 mt0 pl4 white-90 bl bw2 b--blue">
+        <p id="quotation" class="f5 f4-m f3-l white-90 lh-copy measure mt0"></p>
+        <cite id="quote-source" class="f6 ttu tracked fs-normal"></cite>
+      </blockquote>
     </div>
-      <div>
+    
+    <div>
 <div class="ananke-socials">
   
     
@@ -307,7 +308,259 @@ Mondays and Wednesdays, 10-11:30am This class presumes familiarity with Sun Salu
   
 </div>
 </div>
+      
     </div>
   </footer>
+
+
+  <script>
+
+
+
+ (function (window, document) {
+    'use strict';
+
+    
+    
+    
+
+    function PureDropdown(dropdownParent) {
+
+        var PREFIX = 'pure-',
+            ACTIVE_CLASS_NAME = PREFIX + 'menu-active',
+            ARIA_ROLE = 'role',
+            ARIA_HIDDEN = 'aria-hidden',
+            MENU_OPEN = 0,
+            MENU_CLOSED = 1,
+            MENU_PARENT_CLASS_NAME = 'pure-menu-has-children',
+            MENU_ACTIVE_SELECTOR = '.pure-menu-active',
+            MENU_LINK_SELECTOR = '.pure-menu-link',
+            MENU_SELECTOR = '.pure-menu-children',
+            DISMISS_EVENT = (window.hasOwnProperty &&
+                window.hasOwnProperty('ontouchstart')) ?
+                    'touchstart' : 'mousedown',
+
+            ARROW_KEYS_ENABLED = true,
+
+            ddm = this; 
+
+            this._state = MENU_CLOSED;
+
+            this.show = function () {
+                if (this._state !== MENU_OPEN) {
+                    this._dropdownParent.classList.add(ACTIVE_CLASS_NAME);
+                    this._menu.setAttribute(ARIA_HIDDEN, false);
+                    this._state = MENU_OPEN;
+                }
+            };
+
+            this.hide = function () {
+                if (this._state !== MENU_CLOSED) {
+                    this._dropdownParent.classList.remove(ACTIVE_CLASS_NAME);
+                    this._menu.setAttribute(ARIA_HIDDEN, true);
+                    this._link.focus();
+                    this._state = MENU_CLOSED;
+                }
+            };
+
+            this.toggle = function () {
+                this[this._state === MENU_CLOSED ? 'show' : 'hide']();
+            };
+
+            this.halt = function (e) {
+                e.stopPropagation();
+                e.preventDefault();
+            };
+
+            this._dropdownParent = dropdownParent;
+            this._link = this._dropdownParent.querySelector(MENU_LINK_SELECTOR);
+            this._menu = this._dropdownParent.querySelector(MENU_SELECTOR);
+            this._firstMenuLink = this._menu.querySelector(MENU_LINK_SELECTOR);
+
+            
+            this._link.setAttribute('aria-haspopup', 'true');
+            this._menu.setAttribute(ARIA_ROLE, 'menu');
+            this._menu.setAttribute('aria-labelledby', this._link.getAttribute('id'));
+            this._menu.setAttribute('aria-hidden', 'true');
+            [].forEach.call(
+                this._menu.querySelectorAll('li'),
+                function(el){
+                    el.setAttribute(ARIA_ROLE, 'presentation');
+                }
+            );
+            [].forEach.call(
+                this._menu.querySelectorAll('a'),
+                function(el){
+                    el.setAttribute(ARIA_ROLE, 'menuitem');
+                }
+            );
+
+            
+            this._link.addEventListener('click', function (e) {
+                e.stopPropagation();
+                e.preventDefault();
+                ddm.toggle();
+            });
+
+            
+            document.addEventListener('keydown', function (e) {
+                var currentLink,
+                    previousSibling,
+                    nextSibling,
+                    previousLink,
+                    nextLink;
+
+                
+                if (ddm._state !== MENU_OPEN) {
+                    return;
+                }
+
+                
+                if (ddm._menu.querySelector(MENU_ACTIVE_SELECTOR)) {
+                    return;
+                }
+
+                currentLink = ddm._menu.querySelector(':focus');
+
+                
+                if (e.keyCode === 27) {
+                     
+                    ddm.halt(e);
+                    ddm.hide();
+                }
+                
+                else if (ARROW_KEYS_ENABLED && e.keyCode === 40) {
+                     
+                    ddm.halt(e);
+                    
+                    nextSibling = (currentLink) ? currentLink.parentNode.nextSibling : null;
+                    
+                    while (nextSibling && nextSibling.nodeType !== 1) {
+                        nextSibling = nextSibling.nextSibling;
+                    }
+                    nextLink = (nextSibling) ? nextSibling.querySelector('.pure-menu-link') : null;
+                    
+                    if (!currentLink) {
+                        ddm._menu.querySelector('.pure-menu-link').focus();
+                    }
+                    else if (nextLink) {
+                        nextLink.focus();
+                    }
+                }
+                
+                else if (ARROW_KEYS_ENABLED && e.keyCode === 38) {
+                     
+                    ddm.halt(e);
+                    
+                    previousSibling = (currentLink) ? currentLink.parentNode.previousSibling : null;
+                    while (previousSibling && previousSibling.nodeType !== 1) {
+                        previousSibling = previousSibling.previousSibling;
+                    }
+                    previousLink = (previousSibling) ? previousSibling.querySelector('.pure-menu-link') : null;
+                    
+                    if (!currentLink) {
+                        ddm._menu.querySelector('.pure-menu-item:last-child .pure-menu-link').focus();
+                    }
+                    
+                    else if (previousLink) {
+                        previousLink.focus();
+                    }
+                }
+            });
+
+            
+            document.addEventListener(DISMISS_EVENT, function (e) {
+                var target = e.target;
+                if (target !== ddm._link && !ddm._menu.contains(target)) {
+                    ddm.hide();
+                    ddm._link.blur();
+                }
+            });
+
+    }
+
+    function initDropdowns() {
+        var dropdownParents = document.querySelectorAll('.pure-menu-has-children');
+        for (var i = 0; i < dropdownParents.length; i++) {
+            var ddm = new PureDropdown(dropdownParents[i]);
+        }
+    }
+
+    initDropdowns();
+
+}(this, this.document));
+
+
+ 
+
+
+ function randomQuotes() {
+
+    
+    function getRandomInt(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min)) + min;
+    }
+  
+    var url = "/data/quotes.json";
+  
+    
+    function callback(response, error) {
+        if (response !== null) {
+            processData(response);
+        } else {
+            console.log(error);
+        }
+    }
+  
+    
+    function processData(json) {
+        var quotes = JSON.parse(json);
+        var randomIndex = getRandomInt(0, quotes.length);
+        var quote = quotes[randomIndex].quote;
+        var author = quotes[randomIndex].author;
+        var quoteElement = document.querySelector("#quotation");
+        quoteElement.innerHTML = quote;
+        var sourceElement = document.querySelector("#quote-source")
+        console.log(sourceElement);
+        sourceElement.innerHTML = "&mdash; " + author;
+    }
+  
+    
+    var req = new XMLHttpRequest();
+    req.open("GET", url, true);
+    
+    req.timeout = 30000;
+    req.ontimeout = function () {
+        console.log("Request timed out.");
+    };
+  
+    
+    req.addEventListener("load", function () {
+        if (req.status < 400) {
+            callback(req.responseText);
+        } else {
+            callback(null, new Error(req.status + ":  " + req.statusText));
+        }
+    });
+  
+    
+    req.addEventListener("error", function () {
+        callback(null, new Error("Network error"));
+    });
+  
+    
+    req.send();
+    console.log("hello");
+  }
+  
+  window.addEventListener('load', randomQuotes);
+
+  let stuff = "hello";
+
+
+
+  </script>
   </body>
 </html>

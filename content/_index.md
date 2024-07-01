@@ -11,3 +11,4 @@ Trident Moon promotes the practice of Aṣṭāṅga Yoga and meditation in Cent
 If Yoga were only a system for physical health that leads to happiness in one's body, that would be marvellous enough, but experience shows that through the disciplined and unassuming practice of Yoga one is also opened, over time, to encounter with the Mystery of God, in whom we all live, move and have our being.
 
 This site is under construction.  Students can find links to posture cheat-sheets in one of the articles.
+
